@@ -39,44 +39,50 @@ CREATE TABLE Hotel (
 
 CREATE TABLE Room (
     room_num INTEGER PRIMARY KEY AUTOINCREMENT,
-    hotel_id INTEGER NOT NULL,
+    HID INTEGER FOREIGN KEY,
     price NUMERIC(6, 2) NOT NULL,
+    amenities VARCHAR(50) NOT NULL,
     capacity TINYINT NOT NULL,
-    "view" VARCHAR(50) NOT NULL,
-    amenities VARCHAR(50),
-    problems VARCHAR(50),
+    view VARCHAR(50) NOT NULL,
     extendable BOOLEAN NOT NULL,
-    FOREIGN KEY(hotel_id) REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+    probs_or_dmgs VARCHAR(50)
+    FOREIGN KEY(HID) REFERENCES Hotel(HID) ON DELETE CASCADE
 );
 
 CREATE TABLE Customer(
-    customer_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    password VARCHAR(50),
-    hotel_id INTEGER,
-    SIN VARCHAR(9) NOT NULL,
+    CID INTEGER PRIMARY KEY AUTOINCREMENT,  
+    HID INTEGER FOREIGN KEY,
+    SIN VARCHAR(11) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
+    mid_init VARCHAR(1),
     last_name VARCHAR(50) NOT NULL,
-    street VARCHAR(50),
-    city VARCHAR(50),
+    street_num INTEGER NOT NULL,
+    street_name VARCHAR(50) NOT NULL,
+    apartment_num INTEGER,
+    city VARCHAR(50) NOT NULL,
     postal_code VARCHAR(50),
-    country VARCHAR(50),
-    registration_date DATE NOT NULL,
-    FOREIGN KEY(hotel_id) REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+    province_state VARCHAR(2) NOT NULL,
+    postal_code VARCHAR(7) NOT NULL
+    date_of_reg DATE NOT NULL,
+    FOREIGN KEY(HID) REFERENCES Hotel(HID) ON DELETE CASCADE
 );
 
 CREATE TABLE Employee(
-    employee_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    password VARCHAR(50),
-    hotel_id INTEGER NOT NULL,
-    SIN VARCHAR(9) NOT NULL,
+    EID INTEGER PRIMARY KEY AUTOINCREMENT,
+    HID INTEGER FOREIGN KEY,
+    SIN VARCHAR(11) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
+    mid_init VARCHAR(1),
     last_name VARCHAR(50) NOT NULL,
-    street VARCHAR(50),
-    city VARCHAR(50),
+    street_num INTEGER NOT NULL,
+    street_name VARCHAR(50) NOT NULL,
+    apartment_num INTEGER,
+    city VARCHAR(50) NOT NULL,
     postal_code VARCHAR(50),
-    country VARCHAR(50),
-    position VARCHAR(20), -- unsure
-    FOREIGN KEY(hotel_id) REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+    province_state VARCHAR(2) NOT NULL,
+    postal_code VARCHAR(7) NOT NULL,
+    position VARCHAR(50) NOT NULL,
+    FOREIGN KEY(HID) REFERENCES Hotel(HID) ON DELETE CASCADE
 );
 
 CREATE TABLE Book(
