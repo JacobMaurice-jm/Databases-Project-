@@ -7,27 +7,34 @@ DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Rent;
 
 CREATE TABLE Chain (
-    name VARCHAR(50) PRIMARY KEY,
-    street VARCHAR(50),
-    city VARCHAR(50),
-    postal_code INTEGER,
-    country VARCHAR(50),
-    email VARCHAR(50),
-    phone_number VARCHAR(50)
+    chain_name VARCHAR(50) PRIMARY KEY,
+    num_of_hotels INTEGER NOT NULL,
+    street_num INTEGER NOT NULL,
+    street_name VARCHAR(50) NOT NULL,
+    apartment_num INTEGER,
+    city VARCHAR(50) NOT NULL,
+    province_state VARCHAR(2) NOT NULL,
+    postal_code VARCHAR(7) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    contact_email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(14) NOT NULL
 );
 
 CREATE TABLE Hotel (
-    hotel_id INTEGER PRIMARY KEY AUTOINCREMENT, -- unsure
+    HID INTEGER PRIMARY KEY AUTOINCREMENT,
     chain_name VARCHAR(50) NOT NULL,
-    hotel_name VARCHAR(50) NOT NULL,
-    star_num TINYINT,
-    street VARCHAR(50),
-    city VARCHAR(50),
-    postal_code INTEGER,
-    country VARCHAR(50),
-    email VARCHAR(50),
-    phone_number VARCHAR(50),
-    FOREIGN KEY(chain_name) REFERENCES Chain(name) ON UPDATE CASCADE ON DELETE SET NULL
+    num_of_stars TINYINT NOT NULL,
+    num_of_rooms INTEGER NOT NULL,
+    street_num INTEGER NOT NULL,
+    street_name VARCHAR(50) NOT NULL,
+    apartment_num INTEGER,
+    city VARCHAR(50) NOT NULL,
+    province_state VARCHAR(2) NOT NULL,
+    postal_code VARCHAR(7) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    contact_email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(14) NOT NULL,
+    FOREIGN KEY(chain_name) REFERENCES Chain(chain_name) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE Room (
